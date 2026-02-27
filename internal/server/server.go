@@ -17,6 +17,7 @@ func New(port int) *http.Server {
 	mux.HandleFunc("POST /api/v1/enrich", h.Enrich)
 	mux.HandleFunc("POST /api/v1/parse-validate", h.ParseValidate)
 	mux.HandleFunc("POST /api/v1/parse-validate-enrich", h.Pipeline)
+	mux.HandleFunc("POST /api/v1/export", h.Export)
 
 	return &http.Server{
 		Addr:    fmt.Sprintf(":%d", port),
