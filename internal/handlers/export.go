@@ -36,6 +36,9 @@ func (h *Handlers) Export(w http.ResponseWriter, r *http.Request) {
 
 	switch format {
 	case "gedcom":
+		// Always reconstruct from enriched tables so NOTE xrefs, DATE values, and OBJE
+		// match what JSON/CSV use. (WithOriginal would serialize a raw Document when
+		// present, which can bypass normalizers and confuse DB-only payloads.)
 		gedcomText := exporter.EnrichedToGEDCOM(payload.Enriched)
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.Header().Set("Content-Disposition", "attachment; filename=\""+filename+".ged\"")

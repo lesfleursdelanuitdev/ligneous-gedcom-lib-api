@@ -1,13 +1,14 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/lesfleursdelanuitdev/ligneous-gedcom-lib-api/internal/handlers"
 )
 
-func New(port int) *http.Server {
+// New returns an HTTP server bound to listenAddr (e.g. ":8092", "127.0.0.1:8092").
+// When LISTEN_ADDR is unset, main sets listenAddr to ":"+PORT.
+func New(listenAddr string) *http.Server {
 	mux := http.NewServeMux()
 	h := handlers.New()
 
@@ -18,9 +19,11 @@ func New(port int) *http.Server {
 	mux.HandleFunc("POST /api/v1/parse-validate", h.ParseValidate)
 	mux.HandleFunc("POST /api/v1/parse-validate-enrich", h.Pipeline)
 	mux.HandleFunc("POST /api/v1/export", h.Export)
+	mux.HandleFunc("POST /api/v1/reconcile/merge-plan", h.ReconcileMergePlan)
+	mux.HandleFunc("POST /api/v1/reconcile/session", h.ReconcileSession)
 
 	return &http.Server{
-		Addr:    fmt.Sprintf(":%d", port),
+		Addr:    listenAddr,
 		Handler: corsMiddleware(mux),
 	}
 }

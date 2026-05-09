@@ -21,7 +21,12 @@ func main() {
 		}
 	}
 
-	srv := server.New(port)
-	fmt.Printf("ligneous-gedcom-lib-api listening on :%d\n", port)
+	listenAddr := os.Getenv("LISTEN_ADDR")
+	if listenAddr == "" {
+		listenAddr = ":" + strconv.Itoa(port)
+	}
+
+	srv := server.New(listenAddr)
+	fmt.Printf("ligneous-gedcom-lib-api listening on %s\n", listenAddr)
 	log.Fatal(srv.ListenAndServe())
 }
