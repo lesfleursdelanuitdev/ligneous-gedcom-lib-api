@@ -1,0 +1,18 @@
+services:
+  ligneous-gedcom-lib-api:
+    build:
+      context: ..
+      dockerfile: ligneous-gedcom-lib-api/Dockerfile
+    ports:
+      - "8092:8092"
+    environment:
+      - PORT=8092
+      # Optional: bind loopback only (host still publishes 8092:8092 to the outside).
+      # - LISTEN_ADDR=127.0.0.1:8092
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8092/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

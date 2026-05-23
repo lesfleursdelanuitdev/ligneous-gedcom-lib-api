@@ -1,0 +1,23 @@
+[Unit]
+Description=Ligneous GEDCOM Lib HTTP API (parse, validate, enrich, export)
+Documentation=https://github.com/lesfleursdelanuitdev/ligneous-gedcom-lib-api
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Run as a dedicated user; create with: sudo useradd --system --home /nonexistent --shell /usr/sbin/nologin ligneous
+User=ligneous
+Group=ligneous
+# Bind loopback only — terminate TLS on nginx and proxy_pass here.
+Environment=LISTEN_ADDR=127.0.0.1:8092
+ExecStart=/usr/local/bin/ligneous-gedcom-lib-api
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
