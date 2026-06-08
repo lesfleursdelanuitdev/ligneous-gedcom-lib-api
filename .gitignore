@@ -5,6 +5,7 @@
 *.so
 *.dylib
 /ligneous-gedcom-lib-api
+/gedcom-api
 
 # Test binary
 *.test
