@@ -6,7 +6,7 @@ import (
 	"github.com/lesfleursdelanuitdev/ligneous-gedcom-lib-api/internal/handlers"
 )
 
-// New returns an HTTP server bound to listenAddr (e.g. ":8092", "127.0.0.1:8092").
+// New returns an HTTP server bound to listenAddr (e.g. ":8091", "127.0.0.1:8091").
 // When LISTEN_ADDR is unset, main sets listenAddr to ":"+PORT.
 func New(listenAddr string) *http.Server {
 	mux := http.NewServeMux()

@@ -1,0 +1,13 @@
+# github.com/google/uuid v1.6.0
+## explicit
+github.com/google/uuid
+# github.com/lesfleursdelanuitdev/ligneous-gedcom-lib v0.0.0 => ../ligneous-gedcom-lib
+## explicit; go 1.23.5
+github.com/lesfleursdelanuitdev/ligneous-gedcom-lib/enricher
+github.com/lesfleursdelanuitdev/ligneous-gedcom-lib/exporter
+github.com/lesfleursdelanuitdev/ligneous-gedcom-lib/gedcom
+github.com/lesfleursdelanuitdev/ligneous-gedcom-lib/parser
+github.com/lesfleursdelanuitdev/ligneous-gedcom-lib/pedigreedoc
+github.com/lesfleursdelanuitdev/ligneous-gedcom-lib/reconciliation
+github.com/lesfleursdelanuitdev/ligneous-gedcom-lib/validator
+# github.com/lesfleursdelanuitdev/ligneous-gedcom-lib => ../ligneous-gedcom-lib

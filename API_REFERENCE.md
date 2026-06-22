@@ -27,7 +27,7 @@ Example:
 ```bash
 curl -sS -X POST \
   -F "file=@/path/to/input.ged" \
-  "http://127.0.0.1:8092/api/v1/enrich"
+  "http://127.0.0.1:8091/api/v1/enrich"
 ```
 
 ## Associates (`ASSO` / `RELA`) Support
