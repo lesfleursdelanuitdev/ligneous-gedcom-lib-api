@@ -1,18 +1,13 @@
-# Build from parent so we can access ligneous-gedcom-lib
-FROM golang:1.23-alpine AS builder
-WORKDIR /build
+# Self-contained build: the local dependency (ligneous-gedcom-lib) is vendored
+# into vendor/, so the build context is just this repo — no sibling checkout needed.
+FROM docker.io/library/golang:1.23-alpine AS builder
+WORKDIR /src
+COPY . .
+RUN CGO_ENABLED=0 go build -mod=vendor -o /api .
 
-# Copy lib first (dependency)
-COPY ligneous-gedcom-lib/ ./ligneous-gedcom-lib/
-COPY ligneous-gedcom-lib-api/ ./ligneous-gedcom-lib-api/
-
-# Build (replace directive in go.mod expects ../ligneous-gedcom-lib)
-WORKDIR /build/ligneous-gedcom-lib-api
-RUN go mod download && CGO_ENABLED=0 go build -o /api .
-
-FROM alpine:3.19
+FROM docker.io/library/alpine:3.19
 RUN apk add --no-cache ca-certificates
-EXPOSE 8092
-ENV PORT=8092
+EXPOSE 8091
+ENV PORT=8091
 COPY --from=builder /api /api
-CMD ["/api", "-port", "8092"]
+CMD ["/api", "-port", "8091"]

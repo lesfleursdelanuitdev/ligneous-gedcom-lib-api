@@ -1,11 +1,11 @@
-# Example nginx site: TLS in front of ligneous-gedcom-lib-api on 127.0.0.1:8092
+# Example nginx site: TLS in front of ligneous-gedcom-lib-api on 127.0.0.1:8091
 #
 # 1. Copy to /etc/nginx/sites-available/ and symlink into sites-enabled.
 # 2. Replace gedcom-api.example.com and ssl_certificate paths.
-# 3. Ensure systemd unit sets LISTEN_ADDR=127.0.0.1:8092 (see deploy/systemd/).
+# 3. Ensure systemd unit sets LISTEN_ADDR=127.0.0.1:8091 (see deploy/systemd/).
 
 upstream ligneous_gedcom_lib_api {
-    server 127.0.0.1:8092;
+    server 127.0.0.1:8091;
     keepalive 16;
 }
 
