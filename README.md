@@ -4,6 +4,20 @@ A small Go HTTP service that parses, validates, enriches, exports and reconciles
 
 Part of [Ligneous](https://github.com/lesfleursdelanuitdev/Ligneous).
 
+**Architecture:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+
+## Screenshots
+
+These come from the Gonsalves family site and its admin app running on a demo database, loaded with the public US-presidents sample tree (`pres2020.ged`) through the real import pipeline. No family data is shown.
+
+<img src="docs/screenshots/admin-import-plan.png" alt="/api/v1/parse-validate-enrich output, summarized in the admin app before import">
+
+*`/api/v1/parse-validate-enrich` output, summarized in the admin app before import.*
+
+<img src="docs/screenshots/admin-merge-plan-summary.png" alt="A merge plan from /api/v1/reconcile: the same file compared against the tree it was imported into">
+
+*A merge plan from `/api/v1/reconcile`: the same file compared against the tree it was imported into.*
+
 ## What it does
 
 The service is a thin HTTP layer over [ligneous-gedcom-lib](https://github.com/lesfleursdelanuitdev/ligneous-gedcom-lib) (Go module `github.com/lesfleursdelanuitdev/ligneous-gedcom-lib`). The GEDCOM logic lives in the library. This repo adds routing, upload handling, JSON responses, CORS and deployment files.
